@@ -6,10 +6,12 @@ class Time
 {
 public:
     Time();
+    static long getTime();
+    double getDelta(){ return m_delta;  }
+    void setDelta(double delta);
 
-signals:
-
-public slots:
+private:
+    double m_delta;
 };
 
 #endif // TIME_H
