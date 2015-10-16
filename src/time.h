@@ -5,6 +5,8 @@
 class Time
 {
 public:
+    static constexpr long SECOND{1000000000L};
+
     Time();
     static long getTime();
     double getDelta(){ return m_delta;  }
