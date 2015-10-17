@@ -7,11 +7,19 @@
 MainComponent::MainComponent() :
     m_isRunning{false}
 {
-    m_window = new Window{WIDTH, HEIGHT, TITLE};
+    m_window = new Window(WIDTH, HEIGHT, TITLE);
 
     m_window->makeContextCurrent();
     std::cout << glGetString(GL_VERSION) << std::endl;
 
+    //m_game = new Game();
+
+}
+
+MainComponent::~MainComponent()
+{
+    delete m_game;
+    delete m_window;
 
 }
 
@@ -33,6 +41,7 @@ void MainComponent::stop()
 void MainComponent::run()
 {
     m_isRunning = true;
+
     int frames = 0;
     long frameCounter = 0;
 
@@ -58,6 +67,9 @@ void MainComponent::run()
             if (m_window->shouldClose()) {
                 stop();
             }
+
+            //m_game->input();
+            //m_game->update();
 
             //TODO: update game
 
