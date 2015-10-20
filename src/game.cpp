@@ -5,6 +5,10 @@ Game::Game()
 
 }
 
+Game::~Game()
+{
+}
+
 void Game::input()
 {
 

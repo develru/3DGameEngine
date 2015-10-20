@@ -12,7 +12,7 @@ MainComponent::MainComponent() :
     m_window->makeContextCurrent();
     std::cout << glGetString(GL_VERSION) << std::endl;
 
-    //m_game = new Game();
+    m_game = new Game();
 
 }
 
@@ -68,8 +68,8 @@ void MainComponent::run()
                 stop();
             }
 
-            //m_game->input();
-            //m_game->update();
+            m_game->input();
+            m_game->update();
 
             //TODO: update game
 
