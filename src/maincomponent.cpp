@@ -7,19 +7,21 @@
 MainComponent::MainComponent() :
     m_isRunning{false}
 {
-    m_window = new Window(WIDTH, HEIGHT, TITLE);
+    //m_window = new Window(WIDTH, HEIGHT, TITLE);
+    m_window = std::unique_ptr<Window>(new Window(WIDTH, HEIGHT, TITLE));
 
     m_window->makeContextCurrent();
     std::cout << glGetString(GL_VERSION) << std::endl;
 
-    m_game = new Game();
+    //m_game = new Game();
+    m_game = std::unique_ptr<Game>(new Game());
 
 }
 
 MainComponent::~MainComponent()
 {
-    delete m_game;
-    delete m_window;
+    //delete m_game;
+    //delete m_window;
 
 }
 
