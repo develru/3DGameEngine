@@ -3,18 +3,19 @@
 #include <chrono>
 #include "maincomponent.h"
 #include "time.h"
+#include "input.h"
 
 MainComponent::MainComponent() :
     m_isRunning{false}
 {
     //m_window = new Window(WIDTH, HEIGHT, TITLE);
-    m_window = std::unique_ptr<Window>(new Window(WIDTH, HEIGHT, TITLE));
+    m_window = std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, TITLE));
 
     m_window->makeContextCurrent();
     std::cout << glGetString(GL_VERSION) << std::endl;
 
     //m_game = new Game();
-    m_game = std::unique_ptr<Game>(new Game());
+    m_game = std::shared_ptr<Game>(new Game());
 
 }
 
@@ -44,6 +45,8 @@ void MainComponent::run()
 {
     m_isRunning = true;
 
+    //std::shared_ptr<Input> inp(new Input());
+
     int frames = 0;
     long frameCounter = 0;
 
@@ -67,6 +70,10 @@ void MainComponent::run()
             unprocessedTime -= frameTime;
 
             if (m_window->shouldClose()) {
+                stop();
+            }
+
+            if (Input::getKey(m_window, GLFW_KEY_ESCAPE)) {
                 stop();
             }
 

@@ -70,3 +70,8 @@ void Window::render()
 {
 
 }
+
+int Window::getKey(int keyCode)
+{
+    return glfwGetKey(m_window, keyCode);
+}

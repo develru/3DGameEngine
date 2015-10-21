@@ -15,6 +15,7 @@ public:
     GLint getFrameBufferHeight();
     void swapBuffers();
     void render();
+    int getKey(int keyCode);
 
 private:
     static int instanceCount;

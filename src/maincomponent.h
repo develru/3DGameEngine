@@ -18,9 +18,9 @@ private:
     static constexpr int HEIGHT{600};
     const std::string TITLE{"3D Engine"};
     static constexpr double FRAME_CAP{5000.0};
-    std::unique_ptr<Window> m_window;
+    std::shared_ptr<Window> m_window;
     bool m_isRunning;
-    std::unique_ptr<Game> m_game;
+    std::shared_ptr<Game> m_game;
 
     void run();
     void render();
