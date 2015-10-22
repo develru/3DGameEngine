@@ -2,19 +2,21 @@
 #define INPUT_H
 
 #include <memory>
+#include <vector>
 #include "window.h"
 
-class Input
+struct Input
 {
-public:
+    static const int NUM_KEYCODES = 256;
+    static std::vector<int> m_currentKeys;
+    static std::vector<int> m_downKeys;
+  
     //Input();
     //~Input();
     //Input(const Input &cpy) = delete;
-    static void update();
+    static void update(std::shared_ptr< Window > win);
     static bool getKey(std::shared_ptr<Window> win, int keyCode);
     static bool getKeyDown(int keyCode);
-
-private:
 };
 
 #endif /* INPUT_H */
