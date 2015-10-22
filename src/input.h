@@ -10,6 +10,8 @@ struct Input
     static const int NUM_KEYCODES = 256;
     static std::vector<int> m_currentKeys;
     static std::vector<int> m_downKeys;
+    static std::vector<int> m_upKeys;
+    
   
     //Input();
     //~Input();
@@ -17,6 +19,7 @@ struct Input
     static void update(std::shared_ptr< Window > win);
     static bool getKey(std::shared_ptr<Window> win, int keyCode);
     static bool getKeyDown(int keyCode);
+    static bool getKeyUp(int keyCode);
 };
 
 #endif /* INPUT_H */
