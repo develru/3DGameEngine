@@ -77,8 +77,8 @@ void MainComponent::run()
                 stop();
             }
 
-            m_game->input();
-            m_game->update();
+	    m_game->input(m_window);
+	    m_game->update(m_window);
 
             //TODO: update game
 
