@@ -9,8 +9,8 @@ class Game
 public:
     Game();
     ~Game();
-    void input(std::shared_ptr<Window> win);
-    void update( std::shared_ptr< Window > win );
+    void input ( std::shared_ptr<Window> win );
+    void update ( std::shared_ptr< Window > win );
     void render();
 
 

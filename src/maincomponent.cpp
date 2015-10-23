@@ -6,16 +6,16 @@
 #include "input.h"
 
 MainComponent::MainComponent() :
-    m_isRunning{false}
+    m_isRunning {false}
 {
     //m_window = new Window(WIDTH, HEIGHT, TITLE);
-    m_window = std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, TITLE));
+    m_window = std::shared_ptr<Window> ( new Window ( WIDTH, HEIGHT, TITLE ) );
 
     m_window->makeContextCurrent();
-    std::cout << glGetString(GL_VERSION) << std::endl;
+    std::cout << glGetString ( GL_VERSION ) << std::endl;
 
     //m_game = new Game();
-    m_game = std::shared_ptr<Game>(new Game());
+    m_game = std::shared_ptr<Game> ( new Game() );
 
 }
 
@@ -28,14 +28,16 @@ MainComponent::~MainComponent()
 
 void MainComponent::start()
 {
-    if (!m_isRunning) {
+    if ( !m_isRunning )
+    {
         run();
     }
 }
 
 void MainComponent::stop()
 {
-    if(m_isRunning) {
+    if ( m_isRunning )
+    {
         m_isRunning = false;
     }
 
@@ -54,46 +56,52 @@ void MainComponent::run()
     long lastTime = Time::getTime();
     double unprocessedTime = 0;
 
-    while (m_isRunning) {
+    while ( m_isRunning )
+    {
         bool isRender = false;
 
         long startTime = Time::getTime();
         long passedTime = startTime - lastTime;
         lastTime = startTime;
 
-        unprocessedTime += passedTime / (double)Time::SECOND;
+        unprocessedTime += passedTime / ( double ) Time::SECOND;
         frameCounter += passedTime;
 
-        while (unprocessedTime > frameTime) {
+        while ( unprocessedTime > frameTime )
+        {
             isRender = true;
 
             unprocessedTime -= frameTime;
 
-            if (m_window->shouldClose()) {
+            if ( m_window->shouldClose() )
+            {
                 stop();
             }
 
-            if (Input::getKey(m_window, GLFW_KEY_ESCAPE)) {
+            if ( Input::getKey ( m_window, GLFW_KEY_ESCAPE ) )
+            {
                 stop();
             }
 
-	    m_game->input(m_window);
-	    m_game->update(m_window);
+            m_game->input ( m_window );
+            m_game->update ( m_window );
 
             //TODO: update game
 
-            if(frameCounter >= Time::SECOND) {
+            if ( frameCounter >= Time::SECOND )
+            {
                 std::cout << frames << std::endl;
                 frames = 0;
                 frameCounter = 0;
             }
         }
 
-        if(isRender) {
+        if ( isRender )
+        {
 
             // maybee all this transfer to the m_window render() methode
-            glViewport(0, 0, m_window->getFrameBufferWidth(), m_window->getFrameBufferHeight());
-            glClear(GL_COLOR_BUFFER_BIT);
+            glViewport ( 0, 0, m_window->getFrameBufferWidth(), m_window->getFrameBufferHeight() );
+            glClear ( GL_COLOR_BUFFER_BIT );
 
             render();
 
@@ -102,8 +110,9 @@ void MainComponent::run()
 
             frames++;
         }
-        else {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        else
+        {
+            std::this_thread::sleep_for ( std::chrono::milliseconds ( 1 ) );
         }
     }
 
