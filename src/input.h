@@ -11,6 +11,10 @@ struct Input {
     static std::vector<int> m_downKeys;
     static std::vector<int> m_upKeys;
 
+    static const int NUM_MOUSE_BUTTONS = 5;
+    static std::vector<int> m_currentMouseButtons;
+    static std::vector<int> m_downMouseButtons;
+    static std::vector<int> m_upMouseButtons;
 
     //Input();
     //~Input();
@@ -50,6 +54,33 @@ struct Input {
      * @return bool
      */
     static bool getKeyUp ( std::shared_ptr<Window> win, int keyCode );
+    
+    /**
+     * @brief Get the status of the desired mouse button. Return true if the mouse button is pressed.
+     * 
+     * @param win The working window
+     * @param button The desired button
+     * @return bool
+     */
+    static bool getMouseButton ( std::shared_ptr<Window> win, int button );
+    
+    /**
+     * @brief Return true if the mouse button was pressed down in the current frame.
+     * 
+     * @param win The working window
+     * @param button The desired button
+     * @return bool
+     */
+    static bool getMouseButtonDown ( std::shared_ptr<Window> win, int button );
+    
+    /**
+     * @brief Return true if the butten released in the current frame.
+     * 
+     * @param win The working window
+     * @param button The desired button
+     * @return bool
+     */
+    static bool getMouseButtonUp ( std::shared_ptr<Window> win, int button );
 };
 
 #endif /* INPUT_H */

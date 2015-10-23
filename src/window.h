@@ -7,7 +7,7 @@
 class Window
 {
 public:
-    Window(int width, int height, std::string title);
+    Window ( int width, int height, std::string title );
     virtual ~Window();
     void makeContextCurrent();
     bool shouldClose();
@@ -15,7 +15,8 @@ public:
     GLint getFrameBufferHeight();
     void swapBuffers();
     void render();
-    int getKey(int keyCode);
+    int getKey ( int keyCode );
+    int getMouseButton ( int button );
 
 private:
     static int instanceCount;
